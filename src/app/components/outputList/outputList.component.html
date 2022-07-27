@@ -1,0 +1,161 @@
+
+<div class="outputList_container">
+    <div class="outputList">
+        <div class="outputList_header">
+          <h2>{{ componentName }}</h2>
+                <div>
+                  <button type="button" mat-button (click)="showSidenav()">
+                    Фильтры
+                  </button>
+                  <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+                    <mat-button-toggle value="bold" (click)="setInFloat(false)">
+                      список
+                  </mat-button-toggle>
+                    <mat-button-toggle value="italic" (click)="setInFloat(true)">
+                      квадраты
+                    </mat-button-toggle>
+                  </mat-button-toggle-group>
+                </div>
+                
+                <div class="loadProgress">
+                  <div>
+                    <p>Загруженно: {{ itemList.length }}</p>
+                    <p >Всего: {{ loadCount }}</p>
+                  </div>
+                  <mat-progress-bar mode="determinate" [value]="loadProgressValue"></mat-progress-bar>
+                </div>
+                
+            
+        </div>
+
+        <div style="display: flex;">
+          <div class="outputList_sidenav">
+            <form [formGroup]="filterForm" class="filter_options">
+              <div *ngFor="let formElement of filterData">
+                <div [ngSwitch]="formElement.type">
+                  <div *ngSwitchCase="'input'">
+                    <mat-form-field class="example-full-width" appearance="fill">
+                      <mat-label> {{ formElement.label }}</mat-label>
+                      <input  formControlName="{{formElement.label}}" matInput>
+                    </mat-form-field>
+                  </div>
+
+                  <div *ngSwitchCase="'select'">
+                    <mat-form-field class="example-full-width" appearance="fill">
+                      <mat-label> {{ formElement.label }}</mat-label>
+                      <mat-select formControlName="{{formElement.label}}" >
+                        <mat-option 
+                        *ngFor="let selectOption of formElement.options"
+                        [value]="selectOption">
+                          {{ selectOption }}
+                        </mat-option>
+
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+
+                </div>
+              </div>
+            </form>
+            <button (click)="setFilterStatys()" mat-raised-button>
+              Фильтровать
+            </button>
+          </div>
+          <div class="outputList_list_container">
+            <div class="outputList_list">
+              <mat-spinner class="spiner" *ngIf="itemList"></mat-spinner>
+                <div *ngIf="itemList">
+                  <div class="characterCard_container " 
+                  *ngFor="let character of itemList"
+                  [ngClass]="{'showFloatCard' : inFloat }"
+                  >
+                    <characterCard *ngIf="(childComponent == 'characterCard')" [character]="character"></characterCard>
+                  </div>
+                </div>
+                <div class="outputList_list_footer">
+                  <button *ngIf="!(pageMax == pageNumber)" 
+                  (click)="setPageNumber()" mat-raised-button>
+                   Загрузить ещё
+                  </button>
+                </div>
+               
+            </div>
+        </div>
+        </div>
+
+        <!-- <div>
+            <mat-drawer-container class="example-container" autosize>
+                <mat-drawer #drawer class="outputList_sidenav" mode="side">
+
+                  <form [formGroup]="filterForm" class="filter_options">
+                    <div *ngFor="let formElement of filterData">
+                      <div [ngSwitch]="formElement.type">
+                        <div *ngSwitchCase="'input'">
+                          <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label> {{ formElement.label }}</mat-label>
+                            <input  formControlName="{{formElement.label}}" matInput>
+                          </mat-form-field>
+                        </div>
+
+                        <div *ngSwitchCase="'select'">
+                          <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label> {{ formElement.label }}</mat-label>
+                            <mat-select formControlName="{{formElement.label}}" >
+                              <mat-option 
+                              *ngFor="let selectOption of formElement.options"
+                              [value]="selectOption">
+                                {{ selectOption }}
+                              </mat-option>
+
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+
+                      </div>
+                    </div>
+                  </form>
+
+
+
+
+                  <button (click)="setFilterStatys()" mat-raised-button>
+                    Фильтровать
+                  </button>
+                 
+                  
+                </mat-drawer>
+              
+                <div class="outputList_list_container">
+                    <div class="outputList_list">
+                      <mat-spinner class="spiner" *ngIf="itemList"></mat-spinner>
+                        <div *ngIf="itemList">
+                          <div class="characterCard_container " 
+                          *ngFor="let character of itemList"
+                          [ngClass]="{
+                             'showFloatCard' : inFloat == true,
+                             'noFloatCard' : inFloat == false
+                            }"
+                          >
+                            <characterCard *ngIf="(childComponent == 'characterCard')" [character]="character"></characterCard>
+                          </div>
+                        </div>
+                        <div class="outputList_list_footer">
+                          <button *ngIf="!(pageMax == pageNumber)" 
+                          (click)="setPageNumber()" mat-raised-button>
+                           Загрузить ещё
+                          </button>
+                        </div>
+                       
+                    </div>
+                </div>
+              
+              </mat-drawer-container>
+
+
+
+        </div> -->
+      
+        
+    </div>
+</div>
+

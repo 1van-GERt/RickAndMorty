@@ -1,0 +1,33 @@
+<div class="characterInfo_container">
+    <div class="characterInfo">
+        <div class="characterInfo_main">
+            <img src="{{ character.image }}">
+            <p>{{ character.name }}</p>
+            <div class="character_statys">
+                <div class="character_statys_detector" 
+                [ngClass]="{
+                    'green' : character.status == 'Alive',
+                    'red' : character.status == 'Dead',
+                    'yellow' : character.status == 'unknown'
+                }"></div>
+                
+                <p>            
+                    {{character.status}} - {{character.species}}
+                </p>
+            </div>
+            <p>Создан: {{ character.created }}</p>
+        </div>
+
+        <div class="characterInfo_other">
+            <div class="characterInfo_location">
+               <p>{{ character.location.name }}</p>  
+            </div>
+            <div class="characterInfo_episod">
+                <div *ngFor="let episod of character.episode">
+                    {{episod}}
+                </div>
+            </div>            
+        </div>
+        
+    </div>    
+</div>

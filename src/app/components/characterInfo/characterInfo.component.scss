@@ -1,0 +1,40 @@
+.characterInfo_container{
+
+}
+
+.characterInfo{
+  display: flex;
+  justify-content: space-evenly;
+  max-width: 1080px;
+  margin: 20px auto;
+  border-radius: 5px;
+}
+
+
+.character_statys{
+  display: flex;
+  align-items: center;
+  &>p{
+      margin: 0;
+  }
+}
+
+.character_statys_detector{
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;    
+}
+
+.red{
+  background-color: red;
+}
+.green{
+  background-color: green;
+}
+.yellow{
+  background-color: rgb(138, 138, 26);
+}
+
+.characterInfo_other{
+
+}

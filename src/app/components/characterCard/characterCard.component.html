@@ -1,0 +1,23 @@
+<div class="card" [routerLink]="[ character.id]">
+    <div class="character_foto">
+        <img src="{{character.image}}">
+    </div>
+    <div class="character_info">
+        <p>Имя: {{character.name}}</p>
+        <div class="character_statys">
+            <div class="character_statys_detector" 
+            [ngClass]="{
+                'green' : character.status == 'Alive',
+                'red' : character.status == 'Dead',
+                'yellow' : character.status == 'unknown'
+            }"></div>
+            
+            <p>            
+                {{character.status}} - {{character.species}}
+            </p>
+        </div>
+        
+
+        <p>Локация: {{character.location.name}}</p>
+    </div>
+</div>

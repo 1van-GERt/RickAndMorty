@@ -1,0 +1,21 @@
+.characterInfo_container{
+
+}
+
+.characterInfo{
+  display: flex;
+  justify-content: space-evenly;
+  max-width: 1080px;
+  margin: 20px auto;
+  border-radius: 5px;
+}
+
+
+.character_statys{
+  display: flex;
+  align-items: center;
+  &>p{
+      margin: 0;
+  }
+}
+
